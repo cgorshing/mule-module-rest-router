@@ -1,7 +1,7 @@
 REST Router Module
 ===========
 
-A Mule module for implementing REST Routers whit-in flows. The module includes a custom router that will dispatch the message to the inner message processors as long as the URI matches and the processors are attached to the right HTTP method.
+A Mule module for implementing REST Router whit-in flows. The module includes a custom router that will dispatch the message to the inner message processors as long as the URI matches and the processors are attached to the right HTTP method.
 
 Installation
 ------------
