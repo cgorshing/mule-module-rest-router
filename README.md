@@ -22,14 +22,14 @@ your application the following can be done:
 
 Add the connector's maven repo to your pom.xml:
 
-<repositories>
-    <repository>
-        <id>muleforge-releases</id>
-        <name>MuleForge Releases Repository</name>
-        <url>https://repository.muleforge.org/releases/</url>
-        <layout>default</layout>
-    </repsitory>
-</repositories>
+    <repositories>
+        <repository>
+            <id>muleforge-releases</id>
+            <name>MuleForge Releases Repository</name>
+            <url>https://repository.muleforge.org/releases/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
 Add the connector as a dependency to your project. This can be done by adding
 the following under the dependencies element in the pom.xml file of the
@@ -57,25 +57,25 @@ The following is an example URI template:
 If the incoming URI matches the template it will extract the variables in it and it will make them available as
 properties.
 
-	<rest:router templateUri="http://{userid}.blog.com/comments/{title}/feed">
-	    <rest:get>
+	<rest-router:router templateUri="http://{userid}.blog.com/comments/{title}/feed">
+	    <rest-router:get>
 	        <expression-transformer>
 	            <return-argument evaluator="string" expression="Retrieving comment on #[variable:title] for user #[variable:userid]"/>
 	        </expression-transformer>
-	    </rest:get>
-	    <rest:put>
+	    </rest-router:get>
+	    <rest-router:put>
 	        <expression-transformer>
 	            <return-argument evaluator="string" expression="Creating comment on #[variable:title] for user #[variable:userid]"/>
 	        </expression-transformer>
-	    </rest:put>
-	    <rest:post>
+	    </rest-router:put>
+	    <rest-router:post>
 	        <expression-transformer>
 	            <return-argument evaluator="string" expression="Updating comment on #[variable:title] for user #[variable:userid]"/>
 	        </expression-transformer>
-	    </rest:post>
-	    <rest:delete>
+	    </rest-router:post>
+	    <rest-router:delete>
 	        <expression-transformer>
 	            <return-argument evaluator="string" expression="Deleting comment on #[variable:title] for user #[variable:userid]"/>
 	        </expression-transformer>
-	    </rest:delete>
-	</rest:router>
+	    </rest-router:delete>
+	</rest-router:router>
