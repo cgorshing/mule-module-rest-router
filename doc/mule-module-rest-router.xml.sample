@@ -1,0 +1,38 @@
+<!-- BEGIN_INCLUDE(rest-router:router) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:rest-router="http://www.mulesoft.org/schema/mule/rest-router"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.3/mule.xsd
+        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.3/mule-http.xsd
+        http://www.mulesoft.org/schema/mule/rest-router http://www.mulesoft.org/schema/mule/rest/1.0/mule-rest-router.xsd">
+
+    <flow name="commentsFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" />
+        <!-- do not include domain nor protocol, just the path -->
+        <rest-router:router templateUri="/{userid}/comments/{title}/feed">
+            <rest-router:get>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Retrieving comment on #[variable:title] for user #[variable:userid]"/>
+                </expression-transformer>
+            </rest-router:get>
+            <rest-router:put>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Creating comment on #[variable:title] for user #[variable:userid]"/>
+                </expression-transformer>
+            </rest-router:put>
+            <rest-router:post>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Updating comment on #[variable:title] for user #[variable:userid]"/>
+                </expression-transformer>
+            </rest-router:post>
+            <rest-router:delete>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Deleting comment on #[variable:title] for user #[variable:userid]"/>
+                </expression-transformer>
+            </rest-router:delete>
+        </rest-router:router>
+    </flow>
+</mule>
+<!-- END_INCLUDE(rest-router:router) -->

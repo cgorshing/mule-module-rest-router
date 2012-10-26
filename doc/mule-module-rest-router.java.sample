@@ -1,0 +1,20 @@
+<!-- BEGIN_INCLUDE(rest-router:router) -->
+RestRouterModule module = new RestRouterModule();
+Object response = module.router("http://{userid}.blog.com/comments/{title}/feed", new ProcessorCallback() {
+                        ...
+                    },
+                    new ProcessorCallback() {
+                        ...
+                    }
+                    new ProcessorCallback() {
+                        ...
+                    }
+                    new ProcessorCallback() {
+                        ...
+                    },
+                    "get",
+                    "http://3miliano.blog.com/comments/cloud-connect/feed",
+                    new InterceptCallback() {
+                        ...
+                    });
+<!-- END_INCLUDE(rest-router:router) -->
