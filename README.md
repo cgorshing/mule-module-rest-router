@@ -22,14 +22,14 @@ your application the following can be done:
 
 Add the connector's maven repo to your pom.xml:
 
-    <repositories>
-        <repository>
-            <id>mulesoft-snapshots</id>
-            <name>MuleForge Snapshot Repository</name>
-            <url>https://repository.mulesoft.org/snapshots/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
+<repositories>
+    <repository>
+        <id>muleforge-releases</id>
+        <name>MuleForge Releases Repository</name>
+        <url>https://repository.muleforge.org/releases/</url>
+        <layout>default</layout>
+    </repsitory>
+</repositories>
 
 Add the connector as a dependency to your project. This can be done by adding
 the following under the dependencies element in the pom.xml file of the
@@ -38,7 +38,7 @@ application:
     <dependency>
         <groupId>org.mule.modules</groupId>
         <artifactId>mule-module-rest-router</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.2</version>
     </dependency>
 
 Usage
