@@ -107,7 +107,8 @@ public class RestRouterModule
             LOGGER.debug("Match Pattern = {" + matchPattern.pattern() + "} Matches = {" + matcher.matches() + "}");
         }
 
-        if (matcher.matches()) {
+        if (matcher.matches()
+        		&& RestUriUtils.equalDepths(uri, templateUri)) {
 
             // extract URI variables                               `
             Map<String, Object> properties = new LinkedHashMap<String, Object>(variableNames.size());
@@ -179,4 +180,6 @@ public class RestRouterModule
             return Pattern.compile(this.patternBuilder.toString());
         }
     }
+    
+    
 }

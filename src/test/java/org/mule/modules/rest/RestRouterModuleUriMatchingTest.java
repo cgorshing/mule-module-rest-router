@@ -20,45 +20,39 @@ import org.mule.tck.FunctionalTestCase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RestRouterModuleTest extends FunctionalTestCase {
-    @Override
+public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
+    private static final String FLOW_NAME = "uriMatching";
+
+	@Override
     protected String getConfigResources() {
         return "mule-config.xml";
     }
 
     @Test
-    public void testGet() throws Exception {
+    public void testGetMenu() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
         properties.put("http.method", "get");
-        properties.put("http.request.path", "http://3miliano.blog.com/comments/cloud-connect/feed");
-        runFlowWithPayloadAndExpect("basicTest", "Retrieving comment on cloud-connect for user 3miliano", null, properties);
+        properties.put("http.request.path", "/myDomain/menu");
+        runFlowWithPayloadAndExpect(FLOW_NAME, "Retrieving Administration menu for domain myDomain", null, properties);
     }
 
     @Test
-    public void testPut() throws Exception {
+    public void testGetLookup() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
-        properties.put("http.method", "put");
-        properties.put("http.request.path", "http://3miliano.blog.com/comments/cloud-connect/feed");
-        runFlowWithPayloadAndExpect("basicTest", "Creating comment on cloud-connect for user 3miliano", null, properties);
+        properties.put("http.method", "get");
+        properties.put("http.request.path", "/myDomain/myLookup");
+        runFlowWithPayloadAndExpect(FLOW_NAME, "Retrieving myLookup lookup table for domain myDomain", null, properties);
     }
 
     @Test
-    public void testPost() throws Exception {
+    public void testGetEntry() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
-        properties.put("http.method", "post");
-        properties.put("http.request.path", "http://3miliano.blog.com/comments/cloud-connect/feed");
-        runFlowWithPayloadAndExpect("basicTest", "Updating comment on cloud-connect for user 3miliano", null, properties);
+        properties.put("http.method", "get");
+        properties.put("http.request.path", "/myDomain/myLookup/myEntry");
+        runFlowWithPayloadAndExpect(FLOW_NAME, "Getting entry with ID: myEntry from myLookup lookup table for domain myDomain", null, properties);
     }
 
-    @Test
-    public void testDelete() throws Exception {
-        HashMap<String, Object> properties = new HashMap<String, Object>();
-        properties.put("http.method", "delete");
-        properties.put("http.request.path", "http://3miliano.blog.com/comments/cloud-connect/feed");
-        runFlowWithPayloadAndExpect("basicTest", "Deleting comment on cloud-connect for user 3miliano", null, properties);
-    }
-
-    /**
+     /**
      * Run the flow specified by name and assert equality on the expected output
      *
      * @param flowName The name of the flow to run

@@ -34,5 +34,30 @@
         </rest-router:router>
         <!-- END_INCLUDE(rest-router:router) -->
     </flow>
+    
+    <flow name="uriMatching">
+    	<!-- do not include domain nor protocol, just the path -->
+        <rest-router:router templateUri="/{domain}/menu">
+            <rest-router:get>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Retrieving Administration menu for domain #[variable:domain]"/>
+                </expression-transformer>
+            </rest-router:get>
+        </rest-router:router>
+        <rest-router:router templateUri="/{domain}/{lookup}">
+            <rest-router:get> 
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Retrieving #[variable:lookup] lookup table for domain #[variable:domain]"/>
+                </expression-transformer>
+            </rest-router:get>
+        </rest-router:router>
+        <rest-router:router templateUri="/{domain}/{lookup}/{entryID}">
+            <rest-router:get>
+                <expression-transformer>
+                    <return-argument evaluator="string" expression="Getting entry with ID: #[variable:entryID] from #[variable:lookup] lookup table for domain #[variable:domain]"/>
+                </expression-transformer>
+            </rest-router:get>
+        </rest-router:router> 
+    </flow>
 
 </mule>
