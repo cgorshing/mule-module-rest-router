@@ -1,5 +1,5 @@
 var NAVTREE_DATA =
-[ [ "org.mule.modules.rest", "org/mule/modules/rest/package-summary.html", [ [ "Classes", null, [ [ "RestRouterModule", "org/mule/modules/rest/RestRouterModule.html", null, "" ] ]
+[ [ "org.mule.modules.rest", "org/mule/modules/rest/package-summary.html", [ [ "Classes", null, [ [ "RestRouterModule", "org/mule/modules/rest/RestRouterModule.html", null, "" ], [ "RestUriUtils", "org/mule/modules/rest/RestUriUtils.html", null, "" ] ]
 , "" ], [ "Exceptions", null, [ [ "UnsupportedHttpVerbException", "org/mule/modules/rest/UnsupportedHttpVerbException.html", null, "" ] ]
 , "" ] ]
 , "" ], [ "org.mule.modules.rest.adapters", "org/mule/modules/rest/adapters/package-summary.html", [ [ "Classes", null, [ [ "RestRouterModuleCapabilitiesAdapter", "org/mule/modules/rest/adapters/RestRouterModuleCapabilitiesAdapter.html", null, "" ], [ "RestRouterModuleLifecycleAdapter", "org/mule/modules/rest/adapters/RestRouterModuleLifecycleAdapter.html", null, "" ], [ "RestRouterModuleMetadataAdapater", "org/mule/modules/rest/adapters/RestRouterModuleMetadataAdapater.html", null, "" ], [ "RestRouterModuleProcessAdapter", "org/mule/modules/rest/adapters/RestRouterModuleProcessAdapter.html", null, "" ] ]
