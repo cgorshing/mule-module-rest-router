@@ -14,11 +14,12 @@ import org.junit.Test;
 import org.mule.api.MuleEvent;
 import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
-import org.mule.tck.AbstractMuleTestCase;
-import org.mule.tck.FunctionalTestCase;
+import org.mule.tck.junit4.FunctionalTestCase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
     private static final String FLOW_NAME = "uriMatching";
@@ -29,7 +30,7 @@ public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
     }
 
     @Test
-    public void testGetMenu() throws Exception {
+    public void getMenu() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
         properties.put("http.method", "get");
         properties.put("http.request.path", "/myDomain/menu");
@@ -37,7 +38,7 @@ public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
     }
 
     @Test
-    public void testGetLookup() throws Exception {
+    public void getLookup() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
         properties.put("http.method", "get");
         properties.put("http.request.path", "/myDomain/myLookup");
@@ -45,25 +46,11 @@ public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
     }
 
     @Test
-    public void testGetEntry() throws Exception {
+    public void getEntry() throws Exception {
         HashMap<String, Object> properties = new HashMap<String, Object>();
         properties.put("http.method", "get");
         properties.put("http.request.path", "/myDomain/myLookup/myEntry");
         runFlowWithPayloadAndExpect(FLOW_NAME, "Getting entry with ID: myEntry from myLookup lookup table for domain myDomain", null, properties);
-    }
-
-     /**
-     * Run the flow specified by name and assert equality on the expected output
-     *
-     * @param flowName The name of the flow to run
-     * @param expect   The expected output
-     */
-    protected <T> void runFlowAndExpect(String flowName, T expect) throws Exception {
-        Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(null);
-        MuleEvent responseEvent = flow.process(event);
-
-        assertEquals(expect, responseEvent.getMessage().getPayload());
     }
 
     /**
@@ -76,7 +63,7 @@ public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
      */
     protected <T, U> void runFlowWithPayloadAndExpect(String flowName, T expect, U payload, Map<String, Object> inboundProperties) throws Exception {
         Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(payload);
+        MuleEvent event = getTestEvent(payload);
 
         for (String propertyKey : inboundProperties.keySet()) {
             event.getMessage().setProperty(propertyKey, inboundProperties.get(propertyKey), PropertyScope.INBOUND);
@@ -92,6 +79,6 @@ public class RestRouterModuleUriMatchingTest extends FunctionalTestCase {
      * @param name Name of the flow to retrieve
      */
     protected Flow lookupFlowConstruct(String name) {
-        return (Flow) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
+        return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }

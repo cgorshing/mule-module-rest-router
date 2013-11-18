@@ -14,11 +14,12 @@ import org.junit.Test;
 import org.mule.api.MuleEvent;
 import org.mule.api.transport.PropertyScope;
 import org.mule.construct.Flow;
-import org.mule.tck.AbstractMuleTestCase;
-import org.mule.tck.FunctionalTestCase;
+import org.mule.tck.junit4.FunctionalTestCase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class RestRouterModuleVerbsTest extends FunctionalTestCase {
     @Override
@@ -59,20 +60,6 @@ public class RestRouterModuleVerbsTest extends FunctionalTestCase {
     }
 
     /**
-     * Run the flow specified by name and assert equality on the expected output
-     *
-     * @param flowName The name of the flow to run
-     * @param expect   The expected output
-     */
-    protected <T> void runFlowAndExpect(String flowName, T expect) throws Exception {
-        Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(null);
-        MuleEvent responseEvent = flow.process(event);
-
-        assertEquals(expect, responseEvent.getMessage().getPayload());
-    }
-
-    /**
      * Run the flow specified by name using the specified payload and assert
      * equality on the expected output
      *
@@ -82,7 +69,7 @@ public class RestRouterModuleVerbsTest extends FunctionalTestCase {
      */
     protected <T, U> void runFlowWithPayloadAndExpect(String flowName, T expect, U payload, Map<String, Object> inboundProperties) throws Exception {
         Flow flow = lookupFlowConstruct(flowName);
-        MuleEvent event = AbstractMuleTestCase.getTestEvent(payload);
+        MuleEvent event = getTestEvent(payload);
 
         for (String propertyKey : inboundProperties.keySet()) {
             event.getMessage().setProperty(propertyKey, inboundProperties.get(propertyKey), PropertyScope.INBOUND);
@@ -98,6 +85,6 @@ public class RestRouterModuleVerbsTest extends FunctionalTestCase {
      * @param name Name of the flow to retrieve
      */
     protected Flow lookupFlowConstruct(String name) {
-        return (Flow) AbstractMuleTestCase.muleContext.getRegistry().lookupFlowConstruct(name);
+        return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }
