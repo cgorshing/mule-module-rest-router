@@ -3,37 +3,34 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mule.modules</groupId>
     <artifactId>mule-module-rest-router</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>mule-module</packaging>
     <name>Mule REST Router Module</name>
 
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.3.1</version>
+        <version>3.4.1</version>
     </parent>
 
     <repositories>
         <repository>
             <id>mulesoft-releases</id>
             <name>MuleSoft Releases Repository</name>
-            <url>http://repository.mulesoft.org/releases/</url>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
         </repository>
         <repository>
             <id>mulesoft-snapshots</id>
             <name>MuleForge Snapshot Repository</name>
-            <url>https://repository.mulesoft.org/snapshots/</url>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots</url>
             <layout>default</layout>
         </repository>
     </repositories>
 
     <scm>
-        <connection>scm:git:git://github.com:mulesoft/mule-module-rest-router.git
-        </connection>
-        <developerConnection>
-            scm:git:git@github.com:mulesoft/mule-module-rest-router.git
-        </developerConnection>
+        <connection>scm:git:git://github.com:mulesoft/mule-module-rest-router.git</connection>
+        <developerConnection>scm:git:git@github.com:mulesoft/mule-module-rest-router.git</developerConnection>
         <url>http://github.com/mulesoft/mule-module-rest-router</url>
     </scm>
 
